@@ -28,14 +28,14 @@
 <!-- ===== SIGNATUR BEGINN ===== -->
 <table cellpadding="0" cellspacing="0" border="0" width="420" style="width:420px; border-collapse:collapse;">
   <tr>
-    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px;">
       <strong style="color:#8785f3;">Vorname Nachname</strong><br>
       Position/Ausbildung
     </td>
   </tr>
   <tr><td height="14" style="height:14px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
   <tr>
-    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px;">
       <strong style="color:#8785f3;">32fu&szlig; eG</strong><br>
       C&auml;cilienstr. 48<br>
       50667 K&ouml;ln
@@ -43,7 +43,7 @@
   </tr>
   <tr><td height="14" style="height:14px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
   <tr>
-    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px;">
       <a href="mailto:n.nachname@32f.koeln" style="color:#000000; text-decoration:none;">n.nachname@32f.koeln</a><br>
       +49 (0)221 97 30 09-0<br>
       +49 (0)1590 481 35 91
@@ -63,7 +63,7 @@
   </tr>
   <tr><td height="30" style="height:30px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
   <tr>
-    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px;">
       Neuer Name, neues Erscheinungsbild:<br>
       Aus <em>Schaller Architekten Stadtplaner BDA</em> wird die Genossenschaft <strong style="color:#8785f3;">32fu&szlig;</strong>. Wir bleiben das gleiche Team!
     </td>
@@ -83,8 +83,16 @@
     var sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
+
+    function onCopy(e) {
+      e.clipboardData.setData('text/html', box.innerHTML);
+      e.clipboardData.setData('text/plain', box.innerText);
+      e.preventDefault();
+    }
+    document.addEventListener('copy', onCopy);
     var ok = false;
-    try { ok = document.execCommand('copy'); } catch (e) {}
+    try { ok = document.execCommand('copy'); } catch (err) {}
+    document.removeEventListener('copy', onCopy);
     sel.removeAllRanges();
     document.getElementById('msg').textContent = ok ? 'Kopiert – jetzt in Outlook einfügen.' : 'Bitte Signatur markieren und mit Strg+C kopieren.';
   });
