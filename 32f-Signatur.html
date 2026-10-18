@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-Mail-Signatur 32fuß</title>
+<style>
+  /* Nur die Anleitungsseite – die Signatur selbst nutzt ausschließlich Inline-Styles */
+  body { font-family: Helvetica, Arial, sans-serif; background:#f4f4f6; color:#222; margin:0; padding:32px 16px; }
+  .wrap { max-width:560px; margin:0 auto; }
+  h1 { font-size:20px; margin:0 0 8px; }
+  ol { padding-left:20px; line-height:1.5; font-size:15px; }
+  .box { background:#ffffff; border:1px solid #ddd; padding:28px; margin:24px 0 16px; }
+  button { font:inherit; font-size:15px; padding:10px 18px; background:#8785f3; color:#fff; border:0; cursor:pointer; }
+  #msg { margin-left:12px; font-size:14px; color:#555; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>E-Mail-Signatur 32fuß</h1>
+  <ol>
+    <li>Im Kasten unten „Vorname Nachname“, Position, E-Mail-Adresse und Telefonnummern durch Ihre Angaben ersetzen.</li>
+    <li>Auf „Signatur kopieren“ klicken.</li>
+    <li>In Outlook einfügen: Einstellungen → Signaturen → neue Signatur → einfügen (Strg+V bzw. Cmd+V).</li>
+  </ol>
+
+  <div class="box" id="signature-box" contenteditable="true">
+<!-- ===== SIGNATUR BEGINN ===== -->
+<table cellpadding="0" cellspacing="0" border="0" width="420" style="width:420px; border-collapse:collapse;">
+  <tr>
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+      <strong style="color:#8785f3;">Vorname Nachname</strong><br>
+      Position/Ausbildung
+    </td>
+  </tr>
+  <tr><td height="14" style="height:14px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
+  <tr>
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+      <strong style="color:#8785f3;">32fu&szlig; eG</strong><br>
+      C&auml;cilienstr. 48<br>
+      50667 K&ouml;ln
+    </td>
+  </tr>
+  <tr><td height="14" style="height:14px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
+  <tr>
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+      <a href="mailto:n.nachname@32f.koeln" style="color:#000000; text-decoration:none;">n.nachname@32f.koeln</a><br>
+      +49 (0)221 97 30 09-0<br>
+      +49 (0)1590 481 35 91
+    </td>
+  </tr>
+  <tr><td height="14" style="height:14px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
+  <tr>
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px;">
+      <a href="https://www.xn--32fu-yna.koeln" style="color:#8785f3; text-decoration:none;"><strong style="color:#8785f3;">www.32fu&szlig;.koeln</strong></a>
+    </td>
+  </tr>
+  <tr><td height="34" style="height:34px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
+  <tr>
+    <td>
+      <!-- Logo-URL ersetzen, sobald das Bild auf Ihrer Website liegt, z. B. https://www.32fuß.koeln/mail/32f-Wortmarke-Signatur-500px.png -->
+      <img src="32f-Wortmarke-Signatur-500px.png" alt="32fuß" style="display:block; width:225px; border:0;">
+    </td>
+  </tr>
+  <tr><td height="30" style="height:30px; font-size:1px; line-height:1px;">&nbsp;</td></tr>
+  <tr>
+    <td style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#000000;">
+      Neuer Name, neues Erscheinungsbild:<br>
+      Aus <em>Schaller Architekten Stadtplaner BDA</em> wird die Genossenschaft <strong style="color:#8785f3;">32fu&szlig;</strong>. Wir bleiben das gleiche Team!
+    </td>
+  </tr>
+</table>
+<!-- ===== SIGNATUR ENDE ===== -->
+  </div>
+
+  <button type="button" id="copy">Signatur kopieren</button><span id="msg"></span>
+</div>
+
+<script>
+  document.getElementById('copy').addEventListener('click', function () {
+    var box = document.getElementById('signature-box');
+    var range = document.createRange();
+    range.selectNodeContents(box);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    document.getElementById('msg').textContent = ok ? 'Kopiert – jetzt in Outlook einfügen.' : 'Bitte Signatur markieren und mit Strg+C kopieren.';
+  });
+</script>
+</body>
+</html>
